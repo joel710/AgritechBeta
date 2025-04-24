@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RetailAI - Plateforme Intelligente de Gestion Commerciale</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#4f46e5',
+                        danger: '#dc2626',
+                        success: '#16a34a'
+                    },
+                    borderRadius: {
+                        'card': '12px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .anomaly-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+            50% {
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 font-['Inter']">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 glass-panel fixed h-full p-6 border-r border-gray-200">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-primary">RetailAI</h2>
+                <p class="text-sm text-gray-600">Connecté • Boutique Paris</p>
+            </div>
+
+            <nav class="space-y-2">
+                <a href="#" data-target="caisse" class="flex items-center p-3 rounded-lg bg-blue-50 text-primary">
+                    <i class="ri-shopping-cart-2-line mr-3"></i>
+                    Caisse
+                </a>
+                <a href="#" data-target="transactions" class="flex items-center p-3 rounded-lg text-gray-600 hover:bg-gray-100">
+                    <i class="ri-history-line mr-3"></i>
+                    Transactions
+                </a>
+                <a href="#" data-target="inventaire" class="flex items-center p-3 rounded-lg text-gray-600 hover:bg-gray-100">
+                    <i class="ri-archive-line mr-3"></i>
+                    Inventaire
+                </a>
+                <a href="#" data-target="analytics" class="flex items-center p-3 rounded-lg text-gray-600 hover:bg-gray-100">
+                    <i class="ri-line-chart-line mr-3"></i>
+                    Analytics
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content - Interface Caisse -->
+        <main class="ml-64 p-8 flex-1">
+
+            <div data-section="caisse" class="hidden">
+            <!-- Header Temps Réel -->
+            <div  class="grid grid-cols-4 gap-6 mb-8">
+                <div class="glass-panel p-4 rounded-card">
+                    <p class="text-sm text-gray-600">CA Journalier</p>
+                    <div class="flex items-center justify-between">
+                        <p class="text-2xl font-bold">€2,450</p>
+                        <i class="ri-euro-line text-blue-500"></i>
+                    </div>
+                </div>
+                <div class="glass-panel p-4 rounded-card">
+                    <p class="text-sm text-gray-600">Transactions</p>
+                    <div class="flex items-center justify-between">
+                        <p class="text-2xl font-bold">54</p>
+                        <i class="ri-exchange-line text-green-500"></i>
+                    </div>
+                </div>
+                <div class="glass-panel p-4 rounded-card">
+                    <p class="text-sm text-gray-600">Alertes Stock</p>
+                    <div class="flex items-center justify-between">
+                        <p class="text-2xl font-bold text-danger">3</p>
+                        <i class="ri-alarm-warning-line text-red-500"></i>
+                    </div>
+                </div>
+                <div class="glass-panel p-4 rounded-card">
+                    <p class="text-sm text-gray-600">Efficacité</p>
+                    <div class="flex items-center justify-between">
+                        <p class="text-2xl font-bold">94%</p>
+                        <i class="ri-flashlight-line text-purple-500"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interface POS -->
+            <div  class="grid grid-cols-3 gap-8">
+                <!-- Liste Produits -->
+                <div class="col-span-2">
+                    <div class="mb-4 flex gap-4">
+                        <input type="text" placeholder="Rechercher produit..."
+                            class="flex-1 p-3 border rounded-card focus:ring-2 focus:ring-primary">
+                        <button class="p-3 bg-primary text-white rounded-button">
+                            <i class="ri-barcode-line"></i>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-4 gap-4">
+                        <!-- Produit -->
+                        <div class="glass-panel p-4 rounded-card hover:shadow-lg transition-shadow">
+                            <div class="aspect-square bg-gray-100 rounded-card mb-2"></div>
+                            <h3 class="font-medium">Lait Bio 1L</h3>
+                            <p class="text-sm text-gray-600">€1.99</p>
+                            <button class="w-full mt-2 p-2 bg-success/10 text-success rounded-button text-sm">
+                                Ajouter
+                            </button>
+                        </div>
+                        <!-- Plus de produits... -->
+                    </div>
+                </div>
+
+                <!-- Panier & Paiement -->
+                <div class="glass-panel p-6 rounded-card">
+                    <h2 class="text-xl font-bold mb-6">Transaction en cours</h2>
+                    <div class="space-y-4 mb-6">
+                        <!-- Article -->
+                        <div class="flex justify-between items-center p-3 bg-gray-50 rounded-card">
+                            <div>
+                                <p class="font-medium">Lait Bio 1L</p>
+                                <p class="text-sm text-gray-600">2 x €1.99</p>
+                            </div>
+                            <p class="font-medium">€3.98</p>
+                        </div>
+                    </div>
+
+                    <!-- Total -->
+                    <div class="border-t pt-4 mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span>Total:</span>
+                            <span class="font-bold">€53.20</span>
+                        </div>
+                        <div class="flex gap-2 mb-4">
+                            <button class="flex-1 p-2 bg-danger/10 text-danger rounded-button">Annuler</button>
+                            <button class="flex-1 p-2 bg-success/10 text-success rounded-button">Payer</button>
+                        </div>
+                    </div>
+
+                    <!-- Méthodes Paiement -->
+                    <div class="grid grid-cols-3 gap-2">
+                        <button class="p-3 border rounded-card hover:border-primary">
+                            <i class="ri-cash-line text-2xl"></i>
+                        </button>
+                        <button class="p-3 border rounded-card hover:border-primary">
+                            <i class="ri-bank-card-line text-2xl"></i>
+                        </button>
+                        <button class="p-3 border rounded-card hover:border-primary">
+                            <i class="ri-smartphone-line text-2xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tableau Admin -->
+            <div class="mt-12">
+                <h2 class="text-xl font-bold mb-6">Surveillance Temps Réel</h2>
+                <div class="glass-panel rounded-card overflow-hidden">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="p-4 text-left">Transaction</th>
+                                <th class="p-4 text-left">Montant</th>
+                                <th class="p-4 text-left">Analyse IA</th>
+                                <th class="p-4 text-left">Statut Stock</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-t hover:bg-gray-50">
+                                <td class="p-4">
+                                    <p class="font-medium">#4587</p>
+                                    <p class="text-sm text-gray-600">14:32:45</p>
+                                </td>
+                                <td class="p-4">€45.90</td>
+                                <td class="p-4">
+                                    <div class="flex items-center text-success">
+                                        <i class="ri-checkbox-circle-line mr-2"></i>
+                                        Normal
+                                    </div>
+                                </td>
+                                <td class="p-4">
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-success h-2 rounded-full w-3/4"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="border-t hover:bg-gray-50 anomaly-pulse">
+                                <td class="p-4">
+                                    <p class="font-medium">#4586</p>
+                                    <p class="text-sm text-gray-600">14:28:12</p>
+                                </td>
+                                <td class="p-4">€120.50</td>
+                                <td class="p-4">
+                                    <div class="flex items-center text-danger">
+                                        <i class="ri-alert-line mr-2"></i>
+                                        Anomalie détectée
+                                    </div>
+                                </td>
+                                <td class="p-4">
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-danger h-2 rounded-full w-1/4"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            </div>
+            <!-- Section Transactions -->
+            <div data-section="transactions" class="hidden">
+            <div  class="mt-12">
+                <!-- En-tête avec filtres -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                    <h2 class="text-2xl font-bold text-gray-800">Historique des Transactions</h2>
+                    <div class="flex items-center gap-4 w-full md:w-auto">
+                        <div class="relative flex-1 md:flex-none">
+                            <input type="text" class="w-full pl-10 pr-4 py-2 border rounded-card focus:ring-2 focus:ring-primary"
+                                placeholder="Rechercher transaction...">
+                            <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                        <select class="w-32 px-4 py-2 border rounded-card">
+                            <option>Toutes</option>
+                            <option>En ligne</option>
+                            <option>En magasin</option>
+                        </select>
+                    </div>
+                </div>
+            
+                <!-- Cartes de statistiques -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                    <div class="glass-panel p-4 rounded-card">
+                        <p class="text-sm text-gray-600 mb-1">CA aujourd'hui</p>
+                        <div class="flex items-center justify-between">
+                            <p class="text-2xl font-bold">€2,450</p>
+                            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                                <i class="ri-euro-line text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-card">
+                        <p class="text-sm text-gray-600 mb-1">Transactions</p>
+                        <div class="flex items-center justify-between">
+                            <p class="text-2xl font-bold">54</p>
+                            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                                <i class="ri-exchange-line text-green-600"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-card">
+                        <p class="text-sm text-gray-600 mb-1">Panier moyen</p>
+                        <div class="flex items-center justify-between">
+                            <p class="text-2xl font-bold">€45.30</p>
+                            <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                                <i class="ri-shopping-basket-line text-purple-600"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-card">
+                        <p class="text-sm text-gray-600 mb-1">Anomalies</p>
+                        <div class="flex items-center justify-between">
+                            <p class="text-2xl font-bold text-danger">3</p>
+                            <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                                <i class="ri-alert-line text-danger"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Tableau des transactions -->
+                <div class="glass-panel rounded-card overflow-hidden">
+                    <table class="w-full">
+                        <thead class="bg-gray-50 border-b">
+                            <tr>
+                                <th class="p-4 text-left text-sm font-medium text-gray-700">ID Transaction</th>
+                                <th class="p-4 text-left text-sm font-medium text-gray-700">Heure</th>
+                                <th class="p-4 text-left text-sm font-medium text-gray-700">Montant</th>
+                                <th class="p-4 text-left text-sm font-medium text-gray-700">Moyen de paiement</th>
+                                <th class="p-4 text-left text-sm font-medium text-gray-700">Statut</th>
+                                <th class="p-4 text-left text-sm font-medium text-gray-700">Analyse IA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Transaction normale -->
+                            <tr class="border-t hover:bg-gray-50 transition-colors">
+                                <td class="p-4 font-medium text-primary">#TX4859</td>
+                                <td class="p-4">
+                                    <p class="text-gray-800">14:32:45</p>
+                                    <p class="text-sm text-gray-600">21/06/2024</p>
+                                </td>
+                                <td class="p-4 font-medium">€45.90</td>
+                                <td class="p-4">
+                                    <div class="flex items-center gap-2">
+                                        <i class="ri-bank-card-line text-blue-600"></i>
+                                        Carte bancaire
+                                    </div>
+                                </td>
+                                <td class="p-4">
+                                    <span class="px-3 py-1 bg-success/10 text-success rounded-full text-sm">Complète</span>
+                                </td>
+                                <td class="p-4">
+                                    <div class="flex items-center gap-2 text-sm">
+                                        <i class="ri-checkbox-circle-line text-success"></i>
+                                        Comportement normal
+                                    </div>
+                                </td>
+                            </tr>
+            
+                            <!-- Transaction avec anomalie -->
+                            <tr class="border-t hover:bg-gray-50 bg-red-50/30 anomaly-pulse">
+                                <td class="p-4 font-medium text-primary">#TX4858</td>
+                                <td class="p-4">
+                                    <p class="text-gray-800">14:28:12</p>
+                                    <p class="text-sm text-gray-600">21/06/2024</p>
+                                </td>
+                                <td class="p-4 font-medium">€120.50</td>
+                                <td class="p-4">
+                                    <div class="flex items-center gap-2">
+                                        <i class="ri-cash-line text-green-600"></i>
+                                        Espèces
+                                    </div>
+                                </td>
+                                <td class="p-4">
+                                    <span class="px-3 py-1 bg-danger/10 text-danger rounded-full text-sm">Signalée</span>
+                                </td>
+                                <td class="p-4">
+                                    <div class="flex items-center gap-2 text-sm">
+                                        <i class="ri-alert-line text-danger"></i>
+                                        Quantité anormale (12x produit)
+                                    </div>
+                                </td>
+                            </tr>
+            
+                            <!-- Transaction en ligne -->
+                            <tr class="border-t hover:bg-gray-50">
+                                <td class="p-4 font-medium text-primary">#TX4857</td>
+                                <td class="p-4">
+                                    <p class="text-gray-800">14:25:01</p>
+                                    <p class="text-sm text-gray-600">21/06/2024</p>
+                                </td>
+                                <td class="p-4 font-medium">€89.90</td>
+                                <td class="p-4">
+                                    <div class="flex items-center gap-2">
+                                        <i class="ri-smartphone-line text-purple-600"></i>
+                                        Mobile Pay
+                                    </div>
+                                </td>
+                                <td class="p-4">
+                                    <span class="px-3 py-1 bg-success/10 text-success rounded-full text-sm">Complète</span>
+                                </td>
+                                <td class="p-4">
+                                    <div class="flex items-center gap-2 text-sm">
+                                        <i class="ri-lightbulb-flash-line text-warning"></i>
+                                        Stock critique (3 restants)
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            
+                <!-- Pied de tableau -->
+                <div class="mt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div class="flex items-center gap-2 text-sm text-gray-600">
+                        <i class="ri-refresh-line"></i>
+                        <span>Dernière mise à jour : 14:35:12</span>
+                        <div class="w-2 h-2 bg-success rounded-full animate-pulse"></div>
+                    </div>
+            
+                    <div class="flex items-center gap-2">
+                        <button class="p-2 hover:bg-gray-100 rounded-card">
+                            <i class="ri-arrow-left-s-line"></i>
+                        </button>
+                        <span class="px-3 py-1 bg-primary text-white rounded-card">1</span>
+                        <button class="p-2 hover:bg-gray-100 rounded-card">2</button>
+                        <button class="p-2 hover:bg-gray-100 rounded-card">3</button>
+                        <button class="p-2 hover:bg-gray-100 rounded-card">
+                            <i class="ri-arrow-right-s-line"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!-- Section Inventaire -->
+            <div data-section="inventaire" class="hidden">
+            <div class="mt-12">
+                <!-- En-tête avec actions rapides -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                    <h2 class="text-2xl font-bold text-gray-800">Gestion de l'Inventaire</h2>
+                    <div class="flex items-center gap-4 w-full md:w-auto">
+                        <button class="flex items-center px-4 py-2 bg-primary text-white rounded-button" onclick="toggleModal()">
+                            <i class="ri-add-line mr-2" ></i>
+                            Nouveau produit
+                        </button>
+                        <button class="flex items-center px-4 py-2 border rounded-button">
+                            <i class="ri-download-line mr-2"></i>
+                            Exporter
+                        </button>
+                    </div>
+                </div>
+            
+                <!-- Statistiques Inventaire -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                    <div class="glass-panel p-4 rounded-card">
+                        <p class="text-sm text-gray-600 mb-1">Articles totaux</p>
+                        <div class="flex items-center justify-between">
+                            <p class="text-2xl font-bold">1,234</p>
+                            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                                <i class="ri-archive-line text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-card">
+                        <p class="text-sm text-gray-600 mb-1">Stock faible</p>
+                        <div class="flex items-center justify-between">
+                            <p class="text-2xl font-bold text-danger">23</p>
+                            <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                                <i class="ri-alert-line text-danger"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-card">
+                        <p class="text-sm text-gray-600 mb-1">Rupture de stock</p>
+                        <div class="flex items-center justify-between">
+                            <p class="text-2xl font-bold text-danger">5</p>
+                            <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                                <i class="ri-forbid-line text-danger"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-card">
+                        <p class="text-sm text-gray-600 mb-1">Réappro. suggérés</p>
+                        <div class="flex items-center justify-between">
+                            <p class="text-2xl font-bold text-success">17</p>
+                            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                                <i class="ri-restart-line text-success"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Tableau d'inventaire -->
+                <div class="glass-panel rounded-card overflow-hidden">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center p-4 border-b">
+                        <div class="flex items-center gap-4 mb-4 md:mb-0">
+                            <div class="relative">
+                                <input type="text" class="pl-10 pr-4 py-2 border rounded-card focus:ring-2 focus:ring-primary"
+                                    placeholder="Rechercher produit...">
+                                <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                            </div>
+                            <select class="px-4 py-2 border rounded-card">
+                                <option>Toutes catégories</option>
+                                <option>Alimentation</option>
+                                <option>Électronique</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="p-2 hover:bg-gray-100 rounded-card">
+                                <i class="ri-filter-line"></i>
+                            </button>
+                            <button class="p-2 hover:bg-gray-100 rounded-card">
+                                <i class="ri-sort-asc"></i>
+                            </button>
+                        </div>
+                    </div>
+            
+                    <table class="w-full">
+                        <thead class="bg-gray-50 border-b">
+                            <tr>
+                                <th class="p-4 text-left text-sm font-medium text-gray-700">Produit</th>
+                                <th class="p-4 text-left text-sm font-medium text-gray-700">Catégorie</th>
+                                <th class="p-4 text-left text-sm font-medium text-gray-700">Prix</th>
+                                <th class="p-4 text-left text-sm font-medium text-gray-700">Stock</th>
+                                <th class="p-4 text-left text-sm font-medium text-gray-700">Fournisseur</th>
+                                <th class="p-4 text-left text-sm font-medium text-gray-700">Statut IA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Produit normal -->
+                            <tr class="border-t hover:bg-gray-50">
+                                <td class="p-4">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 bg-gray-100 rounded-card"></div>
+                                        <div>
+                                            <p class="font-medium">Lait Bio 1L</p>
+                                            <p class="text-sm text-gray-600">SKU: LBIO-1254</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="p-4">Alimentation</td>
+                                <td class="p-4 font-medium">€1.99</td>
+                                <td class="p-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-24 bg-gray-200 rounded-full h-2">
+                                            <div class="bg-success h-2 rounded-full w-3/4"></div>
+                                        </div>
+                                        <span class="text-sm">82/100</span>
+                                    </div>
+                                </td>
+                                <td class="p-4">
+                                    <div class="flex items-center gap-2">
+                                        <i class="ri-store-line text-primary"></i>
+                                        BioFournisseurs
+                                    </div>
+                                </td>
+                                <td class="p-4">
+                                    <span class="px-3 py-1 bg-success/10 text-success rounded-full text-sm">Stable</span>
+                                </td>
+                            </tr>
+            
+                            <!-- Produit avec alerte -->
+                            <tr class="border-t hover:bg-gray-50 bg-yellow-50/30">
+                                <td class="p-4">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 bg-gray-100 rounded-card"></div>
+                                        <div>
+                                            <p class="font-medium">Café Colombie 250g</p>
+                                            <p class="text-sm text-gray-600">SKU: CAFE-4897</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="p-4">Alimentation</td>
+                                <td class="p-4 font-medium">€6.90</td>
+                                <td class="p-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-24 bg-gray-200 rounded-full h-2">
+                                            <div class="bg-danger h-2 rounded-full w-1/5"></div>
+                                        </div>
+                                        <span class="text-sm text-danger">8/50</span>
+                                    </div>
+                                </td>
+                                <td class="p-4">
+                                    <div class="flex items-center gap-2">
+                                        <i class="ri-store-line text-primary"></i>
+                                        CaféMundo
+                                    </div>
+                                </td>
+                                <td class="p-4">
+                                    <div class="flex items-center gap-2">
+                                        <i class="ri-alert-line text-danger"></i>
+                                        <span class="text-sm text-danger">Stock critique</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            
+                <!-- Panneau IA Réapprovisionnement -->
+                <div class="glass-panel p-6 rounded-card mt-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold">Suggestions d'IA</h3>
+                        <button class="flex items-center text-primary">
+                            <i class="ri-restart-line mr-2"></i>
+                            Actualiser les prédictions
+                        </button>
+                    </div>
+            
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="p-4 border rounded-card">
+                            <div class="flex items-center justify-between mb-2">
+                                <div>
+                                    <p class="font-medium">Lait Bio 1L</p>
+                                    <p class="text-sm text-gray-600">Stock actuel: 82</p>
+                                </div>
+                                <span class="text-success">+15%</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <input type="number" class="w-20 px-3 py-2 border rounded-card" value="30">
+                                <button class="px-4 py-2 bg-primary text-white rounded-button">
+                                    Commander
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- Formulaire Ajout Produit v1-->
+            
+            <div class="fixed inset-0 bg-black/30 backdrop-blur-sm hidden" id="productModal">
+                <div class="flex items-center justify-center min-h-screen p-4">
+                    <div class="glass-panel w-full max-w-2xl rounded-card transform transition-all">
+                        <!-- En-tête -->
+                        <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                            <h3 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+                                <i class="ri-add-box-line text-primary"></i>
+                                Nouveau Produit
+                            </h3>
+                            <button onclick="toggleModal()" class="p-2 hover:bg-gray-100 rounded-card">
+                                <i class="ri-close-line text-lg"></i>
+                            </button>
+                        </div>
+            
+                        <!-- Corps du formulaire -->
+                        <div class="p-6 space-y-6">
+                            <!-- Section Principale -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <!-- Colonne Gauche -->
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2 flex items-center gap-1">
+                                            Nom du produit
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="relative">
+                                            <input type="text"
+                                                class="w-full pl-10 pr-4 py-3 border rounded-card focus:ring-2 focus:ring-primary"
+                                                placeholder="Ex: Lait Bio 1L" required>
+                                            <i
+                                                class="ri-product-hunt-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                                        </div>
+                                    </div>
+            
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2 flex items-center gap-1">
+                                            SKU/Code produit
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="relative">
+                                            <input type="text"
+                                                class="w-full pl-10 pr-4 py-3 border rounded-card focus:ring-2 focus:ring-primary"
+                                                placeholder="Ex: LBIO-1254" required>
+                                            <i class="ri-barcode-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                                        </div>
+                                    </div>
+            
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2">Description</label>
+                                        <textarea class="w-full p-3 border rounded-card focus:ring-2 focus:ring-primary" rows="3"
+                                            placeholder="Description détaillée du produit..."></textarea>
+                                    </div>
+                                </div>
+            
+                                <!-- Colonne Droite -->
+                                <div class="space-y-4">
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-sm font-medium mb-2 flex items-center gap-1">
+                                                Catégorie
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="relative">
+                                                <select
+                                                    class="w-full pl-10 pr-4 py-3 border rounded-card focus:ring-2 focus:ring-primary appearance-none">
+                                                    <option value="">Choisir une catégorie</option>
+                                                    <option>Alimentation</option>
+                                                    <option>Électronique</option>
+                                                </select>
+                                                <i
+                                                    class="ri-price-tag-3-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                                            </div>
+                                        </div>
+            
+                                        <div>
+                                            <label class="block text-sm font-medium mb-2">Unité</label>
+                                            <div class="relative">
+                                                <select
+                                                    class="w-full pl-10 pr-4 py-3 border rounded-card focus:ring-2 focus:ring-primary">
+                                                    <option>Pièce</option>
+                                                    <option>Kg</option>
+                                                    <option>Litre</option>
+                                                </select>
+                                                <i class="ri-ruler-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+            
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-sm font-medium mb-2 flex items-center gap-1">
+                                                Prix de vente
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="relative">
+                                                <input type="number"
+                                                    class="w-full pl-10 pr-4 py-3 border rounded-card focus:ring-2 focus:ring-primary"
+                                                    step="0.01" required>
+                                                <i class="ri-euro-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                                            </div>
+                                        </div>
+            
+                                        <div>
+                                            <label class="block text-sm font-medium mb-2">Stock initial</label>
+                                            <div class="relative">
+                                                <input type="number"
+                                                    class="w-full pl-10 pr-4 py-3 border rounded-card focus:ring-2 focus:ring-primary"
+                                                    value="0">
+                                                <i class="ri-number-1 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+            
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2">Fournisseur</label>
+                                        <div class="relative">
+                                            <input type="text"
+                                                class="w-full pl-10 pr-4 py-3 border rounded-card focus:ring-2 focus:ring-primary"
+                                                placeholder="Rechercher fournisseur...">
+                                            <i class="ri-store-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <!-- Téléchargement d'image -->
+                            <div class="border-t pt-6">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-20 h-20 bg-gray-100 rounded-card flex items-center justify-center">
+                                        <i class="ri-image-line text-2xl text-gray-400"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <label class="block text-sm font-medium mb-2">Image du produit</label>
+                                        <div class="flex items-center gap-2">
+                                            <label class="px-4 py-2 bg-primary/10 text-primary rounded-button cursor-pointer">
+                                                <i class="ri-upload-line mr-2"></i>
+                                                Télécharger
+                                                <input type="file" class="hidden" accept="image/*">
+                                            </label>
+                                            <span class="text-sm text-gray-500">JPEG, PNG (max 5MB)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Pied de page -->
+                        <div class="flex justify-end gap-4 p-6 border-t border-gray-200">
+                            <button onclick="toggleModal()" class="px-6 py-2 border rounded-button hover:bg-gray-50">
+                                Annuler
+                            </button>
+                            <button class="px-6 py-2 bg-primary text-white rounded-button hover:bg-primary/90 flex items-center">
+                                <i class="ri-save-line mr-2"></i>
+                                Enregistrer Produit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!-- Section Analytics -->
+            <div data-section="analytics" class="hidden">
+            <div class="mt-12">
+                <!-- En-tête avec filtres -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                    <h2 class="text-2xl font-bold text-gray-800">Analyses Intelligentes</h2>
+                    <div class="flex items-center gap-4">
+                        <select class="px-4 py-2 border rounded-card text-sm">
+                            <option>30 derniers jours</option>
+                            <option>7 derniers jours</option>
+                            <option>24 heures</option>
+                        </select>
+                        <button class="flex items-center px-4 py-2 bg-primary text-white rounded-button text-sm">
+                            <i class="ri-download-line mr-2"></i>
+                            Exporter rapport
+                        </button>
+                    </div>
+                </div>
+            
+                <!-- Cartes de performances clés -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                    <div class="glass-panel p-4 rounded-card">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm text-gray-600 mb-1">Chiffre d'affaires</p>
+                                <p class="text-2xl font-bold">€12,450</p>
+                            </div>
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                                <i class="ri-line-chart-line text-primary"></i>
+                            </div>
+                        </div>
+                        <div class="mt-2 flex items-center text-sm text-success">
+                            <i class="ri-arrow-up-line mr-1"></i>18% vs période précédente
+                        </div>
+                    </div>
+            
+                    <div class="glass-panel p-4 rounded-card">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm text-gray-600 mb-1">Clients actifs</p>
+                                <p class="text-2xl font-bold">324</p>
+                            </div>
+                            <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                                <i class="ri-user-heart-line text-purple-600"></i>
+                            </div>
+                        </div>
+                        <div class="mt-2 flex items-center text-sm text-danger">
+                            <i class="ri-arrow-down-line mr-1"></i>5% vs période précédente
+                        </div>
+                    </div>
+            
+                    <div class="glass-panel p-4 rounded-card">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm text-gray-600 mb-1">Panier moyen</p>
+                                <p class="text-2xl font-bold">€38.90</p>
+                            </div>
+                            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                                <i class="ri-shopping-basket-line text-green-600"></i>
+                            </div>
+                        </div>
+                        <div class="mt-2 flex items-center text-sm text-success">
+                            <i class="ri-arrow-up-line mr-1"></i>22% vs période précédente
+                        </div>
+                    </div>
+            
+                    <div class="glass-panel p-4 rounded-card">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm text-gray-600 mb-1">Satisfaction</p>
+                                <p class="text-2xl font-bold">4.6/5</p>
+                            </div>
+                            <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
+                                <i class="ri-star-smile-line text-yellow-600"></i>
+                            </div>
+                        </div>
+                        <div class="mt-2 flex items-center text-sm text-gray-600">
+                            <i class="ri-dashboard-line mr-1"></i>Analyse en temps réel
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Visualisations principales -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                    <!-- Graphique des ventes -->
+                    <div class="glass-panel p-6 rounded-card">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="font-semibold">Performance des ventes</h3>
+                            <div class="flex items-center gap-2">
+                                <button class="p-2 hover:bg-gray-100 rounded-card">
+                                    <i class="ri-calendar-line"></i>
+                                </button>
+                                <button class="p-2 hover:bg-gray-100 rounded-card">
+                                    <i class="ri-more-2-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <canvas id="salesChart" class="w-full h-64"></canvas>
+                    </div>
+            
+                    <!-- Répartition des catégories -->
+                    <div class="glass-panel p-6 rounded-card">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="font-semibold">Répartition par catégorie</h3>
+                            <select class="px-3 py-1 border rounded-card text-sm">
+                                <option>30 jours</option>
+                                <option>7 jours</option>
+                            </select>
+                        </div>
+                        <canvas id="categoryChart" class="w-full h-64"></canvas>
+                    </div>
+                </div>
+            
+                <!-- Insights IA -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Tendances prédictives -->
+                    <div class="glass-panel p-6 rounded-card">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                                <i class="ri-brain-line text-primary"></i>
+                            </div>
+                            <h3 class="font-semibold">Prédictions IA</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <p class="text-sm">Ventes prévues demain</p>
+                                <p class="font-medium text-success">€1,240 ± €150</p>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <p class="text-sm">Produit à promouvoir</p>
+                                <p class="font-medium">Café Colombie</p>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <p class="text-sm">Heure de pointe</p>
+                                <p class="font-medium">16h-18h</p>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- Top produits -->
+                    <div class="glass-panel p-6 rounded-card">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                                <i class="ri-trophy-line text-purple-600"></i>
+                            </div>
+                            <h3 class="font-semibold">Top 5 Produits</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between text-sm">
+                                <span>1. Lait Bio 1L</span>
+                                <span class="text-gray-600">€1,234</span>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span>2. Café Colombie</span>
+                                <span class="text-gray-600">€987</span>
+                            </div>
+                            <!-- Ajouter d'autres produits -->
+                        </div>
+                    </div>
+            
+                    <!-- Alertes -->
+                    <div class="glass-panel p-6 rounded-card">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                                <i class="ri-alarm-warning-line text-danger"></i>
+                            </div>
+                            <h3 class="font-semibold">Alertes Intelligentes</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-2 text-sm text-danger">
+                                <i class="ri-alert-line mt-1"></i>
+                                <span>Stock critique sur Café Brésil (3 restants)</span>
+                            </div>
+                            <div class="flex items-start gap-2 text-sm text-warning">
+                                <i class="ri-time-line mt-1"></i>
+                                <span>Livraison retardée - Fournisseur BioLait</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- Modal Ajout Produit -->
+            <div class="fixed inset-0 bg-black/50 flex items-center justify-center hidden" id="productModal">
+                <div class="bg-white w-full max-w-2xl p-6 rounded-card">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold">Nouveau Produit</h3>
+                        <button class="p-2 hover:bg-gray-100 rounded-card" onclick="toggleModal()">
+                            <i class="ri-close-line"></i>
+                        </button>
+                    </div>
+            
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Nom du produit</label>
+                            <input type="text" class="w-full p-3 border rounded-card">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Catégorie</label>
+                            <select class="w-full p-3 border rounded-card">
+                                <option>Alimentation</option>
+                                <option>Électronique</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Prix de vente</label>
+                            <input type="number" class="w-full p-3 border rounded-card">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Stock initial</label>
+                            <input type="number" class="w-full p-3 border rounded-card">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium mb-2">Fournisseur</label>
+                            <input type="text" class="w-full p-3 border rounded-card">
+                        </div>
+                    </div>
+            
+                    <div class="mt-6 flex justify-end gap-4">
+                        <button class="px-6 py-2 border rounded-button" onclick="toggleModal()">
+                            Annuler
+                        </button>
+                        <button class="px-6 py-2 bg-primary text-white rounded-button">
+                            Enregistrer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Reçu -->
+    <!-- <div class="fixed inset-0 bg-black/50 flex items-center justify-center">
+        <div class="bg-white w-96 p-6 rounded-card">
+            <h3 class="text-xl font-bold mb-4">Reçu de paiement</h3>
+            <div class="mb-4 space-y-2">
+                <p class="flex justify-between">
+                    <span>Total:</span>
+                    <span class="font-bold">€53.20</span>
+                </p>
+                <p class="text-sm text-gray-600 text-center">Transaction #4587 approuvée</p>
+            </div>
+            <div class="flex gap-2">
+                <button class="flex-1 p-3 bg-primary text-white rounded-button">
+                    <i class="ri-printer-line mr-2"></i>Imprimer
+                </button>
+                <button class="flex-1 p-3 border rounded-button">
+                    <i class="ri-close-line mr-2"></i>Fermer
+                </button>
+            </div>
+        </div>
+    </div> -->
+    <!-- Scripts pour les graphiques -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Script pour les interactions -->
+    <script>
+        //------------------navigation----
+        document.addEventListener('DOMContentLoaded', function () {
+                // Sélectionner tous les liens de navigation et les sections
+                const navLinks = document.querySelectorAll('nav a');
+                const sections = document.querySelectorAll('[data-section]');
+
+                // Fonction pour activer une section
+                function activateSection(sectionId) {
+                    // Désactiver toutes les sections
+                    sections.forEach(section => {
+                        section.classList.add('hidden');
+                        section.classList.remove('active-section');
+                    });
+
+                    // Désactiver tous les liens
+                    navLinks.forEach(link => {
+                        link.classList.remove('bg-blue-50', 'text-primary');
+                        link.classList.add('text-gray-600', 'hover:bg-gray-100');
+                    });
+
+                    // Activer la section cible
+                    const targetSection = document.querySelector(`[data-section="${sectionId}"]`);
+                    if (targetSection) {
+                        targetSection.classList.remove('hidden');
+                        targetSection.classList.add('active-section');
+                    }
+
+                    // Activer le lien cliqué
+                    const activeLink = document.querySelector(`[data-target="${sectionId}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add('bg-blue-50', 'text-primary');
+                        activeLink.classList.remove('text-gray-600', 'hover:bg-gray-100');
+                    }
+                }
+
+                // Ajouter les écouteurs d'événements
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const sectionId = this.getAttribute('data-target');
+                        activateSection(sectionId);
+                    });
+                });
+
+                // Activer la première section par défaut
+                if (navLinks.length > 0) {
+                    const firstSectionId = navLinks[0].getAttribute('data-target');
+                    activateSection(firstSectionId);
+                }
+            });
+
+        //-------------------------------------------------
+        document.addEventListener('DOMContentLoaded', function () {
+            // Gestion des lignes cliquables
+            document.querySelectorAll('tbody tr').forEach(row => {
+                row.addEventListener('click', function (e) {
+                    if (!e.target.closest('button')) {
+                        // Charger les détails de la transaction
+                        console.log('Ouverture détail transaction:', this.querySelector('td').innerText);
+                    }
+                });
+            });
+
+            // Filtrage en temps réel
+            const searchInput = document.querySelector('input[type="text"]');
+            searchInput.addEventListener('input', function (e) {
+                const searchTerm = e.target.value.toLowerCase();
+                document.querySelectorAll('tbody tr').forEach(row => {
+                    const text = row.innerText.toLowerCase();
+                    row.style.display = text.includes(searchTerm) ? '' : 'none';
+                });
+            });
+        });
+
+        <!--  -->
+        function toggleModal() {
+                const modal = document.getElementById('productModal');
+                modal.classList.toggle('hidden');
+            }
+
+            // Gestion de la recherche en temps réel
+            document.querySelector('input[type="text"]').addEventListener('input', function (e) {
+                const searchTerm = e.target.value.toLowerCase();
+                document.querySelectorAll('tbody tr').forEach(row => {
+                    const productName = row.querySelector('td:first-child').innerText.toLowerCase();
+                    row.style.display = productName.includes(searchTerm) ? '' : 'none';
+                });
+            });
+
+    
+            //-------------------------------
+            // Gestion du formulaire
+                function validateProductForm() {
+                    const formElements = document.querySelectorAll('#productModal input[required]');
+                    let isValid = true;
+
+                    formElements.forEach(element => {
+                        if (!element.value.trim()) {
+                            isValid = false;
+                            element.classList.add('border-danger');
+                        } else {
+                            element.classList.remove('border-danger');
+                        }
+                    });
+
+                    if (isValid) {
+                        // Soumettre le formulaire
+                        console.log('Formulaire valide');
+                        toggleModal();
+                    } else {
+                        alert('Veuillez remplir tous les champs obligatoires');
+                    }
+                }
+
+                // Amélioration de la fonction toggle
+                function toggleModal() {
+                    const modal = document.getElementById('productModal');
+                    modal.classList.toggle('hidden');
+                    document.body.classList.toggle('overflow-hidden');
+                }
+
+                //------------------------------------------
+                document.addEventListener('DOMContentLoaded', function () {
+                        // Graphique des ventes
+                        const salesCtx = document.getElementById('salesChart').getContext('2d');
+                        new Chart(salesCtx, {
+                            type: 'line',
+                            data: {
+                                labels: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'],
+                                datasets: [{
+                                    label: 'Ventes',
+                                    data: [650, 590, 800, 810, 560, 550, 400],
+                                    borderColor: '#3b82f6',
+                                    tension: 0.4,
+                                    fill: true,
+                                    backgroundColor: context => {
+                                        const ctx = context.chart.ctx;
+                                        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+                                        gradient.addColorStop(0, 'rgba(59, 130, 246, 0.2)');
+                                        gradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
+                                        return gradient;
+                                    }
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                plugins: {
+                                    legend: { display: false }
+                                }
+                            }
+                        });
+
+                        // Graphique des catégories
+                        const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+                        new Chart(categoryCtx, {
+                            type: 'doughnut',
+                            data: {
+                                labels: ['Alimentation', 'Électronique', 'Maison', 'Loisirs'],
+                                datasets: [{
+                                    data: [45, 25, 20, 10],
+                                    backgroundColor: ['#3b82f6', '#6366f1', '#60a5fa', '#818cf8'],
+                                    borderWidth: 0
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                plugins: {
+                                    legend: { position: 'right' },
+                                    tooltip: { enabled: true }
+                                }
+                            }
+                        });
+                    });
+    </script>
+</body>
+
+</html>

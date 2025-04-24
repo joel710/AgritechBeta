@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SocialContentForge - Générateur de contenu IA pour réseaux sociaux</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#6366f1',secondary:'#8b5cf6'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+.highlight-section {
+animation: highlight 1.5s ease-in-out;
+}
+@keyframes highlight {
+0% {
+box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
+}
+70% {
+box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
+}
+100% {
+box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+}
+}
+body {
+font-family: 'Inter', sans-serif;
+background-color: #f9fafb;
+}
+.glass {
+background: rgba(255, 255, 255, 0.8);
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255, 255, 255, 0.2);
+box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+}
+.sidebar-item {
+transition: all 0.3s ease;
+}
+.sidebar-item:hover {
+background-color: rgba(99, 102, 241, 0.1);
+}
+.sidebar-item.active {
+background-color: rgba(99, 102, 241, 0.15);
+border-left: 3px solid #6366f1;
+}
+input[type="checkbox"] {
+appearance: none;
+-webkit-appearance: none;
+height: 20px;
+width: 20px;
+background-color: #fff;
+border: 1px solid #d1d5db;
+border-radius: 4px;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+outline: none;
+}
+input[type="checkbox"]:checked {
+background-color: #6366f1;
+border-color: #6366f1;
+}
+input[type="checkbox"]:checked::after {
+content: "✓";
+color: white;
+font-size: 14px;
+}
+.switch {
+position: relative;
+display: inline-block;
+width: 48px;
+height: 24px;
+}
+.switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #e5e7eb;
+transition: .4s;
+border-radius: 24px;
+}
+.slider:before {
+position: absolute;
+content: "";
+height: 18px;
+width: 18px;
+left: 3px;
+bottom: 3px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+input:checked + .slider {
+background-color: #6366f1;
+}
+input:checked + .slider:before {
+transform: translateX(24px);
+}
+.network-selector {
+transition: all 0.2s ease;
+}
+.network-selector:hover {
+transform: translateY(-3px);
+}
+.network-selector.selected {
+border-color: #6366f1;
+background-color: rgba(99, 102, 241, 0.1);
+}
+</style>
+</head>
+<body>
+<div class="flex min-h-screen">
+<!-- Sidebar -->
+<aside class="w-64 glass fixed h-full border-r border-gray-200 z-10">
+<div class="flex flex-col h-full">
+<!-- Logo -->
+<div class="p-6">
+<h1 class="text-2xl font-['Pacifico'] text-primary">logo</h1>
+</div>
+<!-- Navigation -->
+<nav class="flex-1 px-4 py-2">
+<div class="space-y-1">
+<a href="#" class="sidebar-item active flex items-center px-4 py-3 text-gray-700 rounded-lg">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-dashboard-line"></i>
+</div>
+<span>Tableau de bord</span>
+</a>
+<a href="#" class="sidebar-item flex items-center px-4 py-3 text-gray-700 rounded-lg">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-add-circle-line"></i>
+</div>
+<span>Nouveau contenu</span>
+</a>
+<a href="https://readdy.ai/home/43f18ae2-e30b-49fd-bef5-ec4e61b0cce2/8361f398-c9b9-4c18-bf5e-fbe82ebfd844" data-readdy="true" class="sidebar-item flex items-center px-4 py-3 text-gray-700 rounded-lg">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-history-line"></i>
+</div>
+<span>Historique</span>
+</a>
+<a href="#" class="sidebar-item flex items-center px-4 py-3 text-gray-700 rounded-lg">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-user-line"></i>
+</div>
+<span>Profil</span>
+</a>
+<a href="#" class="sidebar-item flex items-center px-4 py-3 text-gray-700 rounded-lg">
+<div class="w-6 h-6 flex items-center justify-center mr-3">
+<i class="ri-settings-line"></i>
+</div>
+<span>Paramètres</span>
+</a>
+</div>
+</nav>
+<!-- User Profile -->
+<div class="p-4 border-t border-gray-200">
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+<span>MS</span>
+</div>
+<div class="ml-3">
+<p class="text-sm font-medium text-gray-700">Marie Simone</p>
+<p class="text-xs text-gray-500">Premium</p>
+</div>
+<div class="ml-auto">
+<div class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary">
+<i class="ri-logout-box-line"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 ml-64 p-8">
+<!-- Header -->
+<header class="mb-8">
+<div class="flex items-center justify-between">
+<div>
+<h1 class="text-2xl font-semibold text-gray-800">Bonjour, Marie 👋</h1>
+<p class="text-gray-600">Lundi, 21 avril 2025</p>
+</div>
+<div class="flex items-center">
+<div class="relative mr-4">
+<div class="w-10 h-10 flex items-center justify-center rounded-full text-gray-500 hover:bg-gray-100">
+<i class="ri-notification-3-line"></i>
+</div>
+<div class="absolute top-0 right-0 w-2 h-2 rounded-full bg-red-500"></div>
+</div>
+<button class="flex items-center px-4 py-2 bg-primary text-white rounded-button whitespace-nowrap">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-add-line"></i>
+</div>
+<span>Nouveau contenu</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Stats Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<div class="glass rounded-lg p-6">
+<div class="flex items-center">
+<div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center text-primary">
+<i class="ri-file-text-line ri-lg"></i>
+</div>
+<div class="ml-4">
+<h3 class="text-sm font-medium text-gray-500">Contenus générés</h3>
+<p class="text-2xl font-semibold text-gray-800">128</p>
+</div>
+</div>
+<div class="mt-4">
+<div class="flex items-center text-sm">
+<span class="text-green-500 flex items-center">
+<i class="ri-arrow-up-line"></i>
+12%
+</span>
+<span class="ml-2 text-gray-600">depuis le mois dernier</span>
+</div>
+</div>
+</div>
+<div class="glass rounded-lg p-6">
+<div class="flex items-center">
+<div class="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center text-secondary">
+<i class="ri-instagram-line ri-lg"></i>
+</div>
+<div class="ml-4">
+<h3 class="text-sm font-medium text-gray-500">Réseau favori</h3>
+<p class="text-2xl font-semibold text-gray-800">Instagram</p>
+</div>
+</div>
+<div class="mt-4">
+<div class="flex items-center text-sm">
+<span class="text-gray-600">68 contenus générés</span>
+</div>
+</div>
+</div>
+<div class="glass rounded-lg p-6">
+<div class="flex items-center">
+<div class="w-12 h-12 rounded-lg bg-yellow-100 flex items-center justify-center text-yellow-600">
+<i class="ri-emotion-happy-line ri-lg"></i>
+</div>
+<div class="ml-4">
+<h3 class="text-sm font-medium text-gray-500">Tonalité populaire</h3>
+<p class="text-2xl font-semibold text-gray-800">Professionnel</p>
+</div>
+</div>
+<div class="mt-4">
+<div class="flex items-center text-sm">
+<span class="text-gray-600">Utilisée dans 42% des contenus</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Content Generator -->
+<div id="content-generator" class="glass rounded-lg p-8 mb-8">
+<h2 class="text-xl font-semibold text-gray-800 mb-6">Générateur de contenu</h2>
+<!-- Step 1: Select Network -->
+<div class="mb-8">
+<h3 class="text-sm font-medium text-gray-700 mb-4">1. Choisissez votre réseau social</h3>
+<div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+<div class="network-selector selected border border-gray-200 rounded-lg p-4 flex flex-col items-center cursor-pointer">
+<div class="w-10 h-10 flex items-center justify-center text-pink-600 mb-2">
+<i class="ri-instagram-fill ri-xl"></i>
+</div>
+<span class="text-sm font-medium">Instagram</span>
+</div>
+<div class="network-selector border border-gray-200 rounded-lg p-4 flex flex-col items-center cursor-pointer">
+<div class="w-10 h-10 flex items-center justify-center text-blue-600 mb-2">
+<i class="ri-facebook-fill ri-xl"></i>
+</div>
+<span class="text-sm font-medium">Facebook</span>
+</div>
+<div class="network-selector border border-gray-200 rounded-lg p-4 flex flex-col items-center cursor-pointer">
+<div class="w-10 h-10 flex items-center justify-center text-sky-500 mb-2">
+<i class="ri-twitter-fill ri-xl"></i>
+</div>
+<span class="text-sm font-medium">Twitter</span>
+</div>
+<div class="network-selector border border-gray-200 rounded-lg p-4 flex flex-col items-center cursor-pointer">
+<div class="w-10 h-10 flex items-center justify-center text-blue-700 mb-2">
+<i class="ri-linkedin-fill ri-xl"></i>
+</div>
+<span class="text-sm font-medium">LinkedIn</span>
+</div>
+<div class="network-selector border border-gray-200 rounded-lg p-4 flex flex-col items-center cursor-pointer">
+<div class="w-10 h-10 flex items-center justify-center text-black mb-2">
+<i class="ri-tiktok-fill ri-xl"></i>
+</div>
+<span class="text-sm font-medium">TikTok</span>
+</div>
+</div>
+</div>
+<!-- Step 2: Content Details -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Thématique</label>
+<div class="relative">
+<input type="text" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm" placeholder="Ex: Marketing digital, Cuisine, Fitness...">
+<div class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+<i class="ri-search-line"></i>
+</div>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Objectif</label>
+<select class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm pr-8 appearance-none">
+<option>Informer et éduquer</option>
+<option>Promouvoir un produit/service</option>
+<option>Engager la communauté</option>
+<option>Divertir</option>
+<option>Partager une actualité</option>
+</select>
+<div class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Tonalité</label>
+<select class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm pr-8 appearance-none">
+<option>Professionnel</option>
+<option>Décontracté</option>
+<option>Humoristique</option>
+<option>Inspirant</option>
+<option>Éducatif</option>
+<option>Formel</option>
+</select>
+<div class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Mots-clés (optionnel)</label>
+<input type="text" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm" placeholder="Séparez les mots-clés par des virgules">
+</div>
+</div>
+<div class="flex items-center mb-8">
+<label class="switch mr-3">
+<input type="checkbox" checked>
+<span class="slider"></span>
+</label>
+<span class="text-sm text-gray-700">Inclure des suggestions d'images</span>
+</div>
+<button class="w-full py-3 bg-primary text-white rounded-button font-medium whitespace-nowrap">
+Générer mon contenu
+</button>
+</div>
+<!-- Generated Content -->
+<div id="generated-content" class="glass rounded-lg p-8 mb-8">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-semibold text-gray-800">Contenu généré</h2>
+<div class="flex space-x-2">
+<button class="px-3 py-2 border border-gray-300 rounded-button text-sm text-gray-700 flex items-center whitespace-nowrap">
+<div class="w-4 h-4 flex items-center justify-center mr-2">
+<i class="ri-refresh-line"></i>
+</div>
+Régénérer
+</button>
+<button class="px-3 py-2 border border-gray-300 rounded-button text-sm text-gray-700 flex items-center whitespace-nowrap">
+<div class="w-4 h-4 flex items-center justify-center mr-2">
+<i class="ri-edit-line"></i>
+</div>
+Éditer
+</button>
+<button class="px-3 py-2 bg-primary text-white rounded-button text-sm flex items-center whitespace-nowrap">
+<div class="w-4 h-4 flex items-center justify-center mr-2">
+<i class="ri-save-line"></i>
+</div>
+Sauvegarder
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div>
+<div class="mb-6">
+<h3 class="text-sm font-medium text-gray-500 mb-2">Titre</h3>
+<p class="text-lg font-semibold text-gray-800">5 stratégies essentielles pour booster votre présence Instagram en 2025</p>
+</div>
+<div class="mb-6">
+<h3 class="text-sm font-medium text-gray-500 mb-2">Contenu</h3>
+<div class="bg-white border border-gray-200 rounded-lg p-4">
+<p class="text-gray-700 mb-4">
+Vous cherchez à améliorer votre visibilité sur Instagram cette année ? 📱✨
+</p>
+<p class="text-gray-700 mb-4">
+Dans un monde digital en constante évolution, rester pertinent demande une stratégie adaptée. Voici 5 techniques qui fonctionnent réellement en 2025 :
+</p>
+<ol class="list-decimal pl-5 mb-4 text-gray-700 space-y-2">
+<li>Créez du contenu authentique qui résonne avec votre audience</li>
+<li>Utilisez les Reels de manière stratégique (les algorithmes les favorisent)</li>
+<li>Engagez-vous activement avec votre communauté</li>
+<li>Optimisez vos publications avec les nouveaux formats d'IA</li>
+<li>Analysez vos performances et ajustez votre stratégie</li>
+</ol>
+<p class="text-gray-700">
+Quelle stratégie allez-vous essayer en premier ? Partagez en commentaire ! 👇
+</p>
+</div>
+</div>
+<div>
+<h3 class="text-sm font-medium text-gray-500 mb-2">Hashtags suggérés</h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">#MarketingDigital</span>
+<span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">#StratégieInstagram</span>
+<span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">#ContentCreation</span>
+<span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">#SocialMediaTips</span>
+<span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">#Instagram2025</span>
+<span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">#DigitalMarketing</span>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-sm font-medium text-gray-500 mb-4">Suggestion d'image</h3>
+<div class="rounded-lg overflow-hidden relative aspect-[4/5] bg-gray-100">
+<img src="https://readdy.ai/api/search-image?query=modern%20professional%20instagram%20content%20creation%20workspace%20with%20smartphone%20showing%20analytics%2C%20coffee%20cup%2C%20notebook%2C%20and%20stylish%20desk%20setup%20with%20soft%20natural%20lighting%20and%20minimalist%20aesthetic&width=600&height=750&seq=1&orientation=portrait" alt="Suggestion d'image" class="w-full h-full object-cover object-top">
+<div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
+<div class="flex items-center justify-between">
+<span class="text-white text-sm">Image générée par IA</span>
+<button class="px-3 py-1 bg-white/20 backdrop-blur-sm text-white rounded-full text-xs flex items-center whitespace-nowrap">
+<div class="w-3 h-3 flex items-center justify-center mr-1">
+<i class="ri-download-line"></i>
+</div>
+Télécharger
+</button>
+</div>
+</div>
+</div>
+<div class="mt-4">
+<button class="w-full py-2 border border-gray-300 rounded-button text-sm text-gray-700 flex items-center justify-center whitespace-nowrap">
+<div class="w-4 h-4 flex items-center justify-center mr-2">
+<i class="ri-refresh-line"></i>
+</div>
+Générer une autre image
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Generations -->
+<div>
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-semibold text-gray-800">Générations récentes</h2>
+<a href="#" class="text-primary text-sm font-medium flex items-center">
+Voir tout
+<div class="w-4 h-4 flex items-center justify-center ml-1">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="glass rounded-lg overflow-hidden">
+<div class="p-4 border-b border-gray-200">
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center text-pink-600">
+<i class="ri-instagram-fill"></i>
+</div>
+<span class="ml-2 text-sm font-medium text-gray-700">Instagram</span>
+</div>
+<span class="text-xs text-gray-500">Il y a 2 heures</span>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-medium text-gray-800 mb-2">Comment créer un feed Instagram cohérent pour votre marque</h3>
+<p class="text-gray-600 text-sm line-clamp-3 mb-4">Découvrez les secrets d'un feed Instagram harmonieux qui reflète parfaitement l'identité de votre marque. De la palette de couleurs à...</p>
+<div class="flex justify-end space-x-2">
+<button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary rounded-full hover:bg-gray-100">
+<i class="ri-heart-line"></i>
+</button>
+<button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary rounded-full hover:bg-gray-100">
+<i class="ri-file-copy-line"></i>
+</button>
+<button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary rounded-full hover:bg-gray-100">
+<i class="ri-edit-line"></i>
+</button>
+</div>
+</div>
+</div>
+<div class="glass rounded-lg overflow-hidden">
+<div class="p-4 border-b border-gray-200">
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center text-blue-700">
+<i class="ri-linkedin-fill"></i>
+</div>
+<span class="ml-2 text-sm font-medium text-gray-700">LinkedIn</span>
+</div>
+<span class="text-xs text-gray-500">Hier</span>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-medium text-gray-800 mb-2">Les compétences les plus recherchées en marketing digital en 2025</h3>
+<p class="text-gray-600 text-sm line-clamp-3 mb-4">Le marché du travail évolue rapidement. Voici les 7 compétences incontournables que tout professionnel du marketing digital devrait...</p>
+<div class="flex justify-end space-x-2">
+<button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary rounded-full hover:bg-gray-100">
+<i class="ri-heart-line"></i>
+</button>
+<button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary rounded-full hover:bg-gray-100">
+<i class="ri-file-copy-line"></i>
+</button>
+<button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary rounded-full hover:bg-gray-100">
+<i class="ri-edit-line"></i>
+</button>
+</div>
+</div>
+</div>
+<div class="glass rounded-lg overflow-hidden">
+<div class="p-4 border-b border-gray-200">
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center text-blue-600">
+<i class="ri-facebook-fill"></i>
+</div>
+<span class="ml-2 text-sm font-medium text-gray-700">Facebook</span>
+</div>
+<span class="text-xs text-gray-500">20 avril</span>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-medium text-gray-800 mb-2">10 idées de contenu pour animer votre page Facebook en avril</h3>
+<p class="text-gray-600 text-sm line-clamp-3 mb-4">Le printemps est là ! Profitez de cette saison pour dynamiser votre présence sur Facebook avec ces 10 idées de contenu frais et...</p>
+<div class="flex justify-end space-x-2">
+<button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary rounded-full hover:bg-gray-100">
+<i class="ri-heart-line"></i>
+</button>
+<button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary rounded-full hover:bg-gray-100">
+<i class="ri-file-copy-line"></i>
+</button>
+<button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary rounded-full hover:bg-gray-100">
+<i class="ri-edit-line"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// Network selector functionality
+const networkSelectors = document.querySelectorAll('.network-selector');
+networkSelectors.forEach(selector => {
+selector.addEventListener('click', function() {
+networkSelectors.forEach(s => s.classList.remove('selected'));
+this.classList.add('selected');
+});
+});
+// New content link functionality
+const newContentLinks = document.querySelectorAll('a[href="#"]');
+newContentLinks.forEach(link => {
+if (link.querySelector('i.ri-add-circle-line')) {
+link.addEventListener('click', function(e) {
+e.preventDefault();
+const generatorSection = document.getElementById('content-generator');
+const generatedContent = document.getElementById('generated-content');
+if (generatorSection) {
+generatorSection.scrollIntoView({ behavior: 'smooth' });
+generatorSection.classList.add('highlight-section');
+setTimeout(() => {
+generatorSection.classList.remove('highlight-section');
+}, 1500);
+// Clear generated content
+if (generatedContent) {
+generatedContent.style.display = 'none';
+}
+}
+});
+}
+});
+});
+</script>
+</body>
+</html>
