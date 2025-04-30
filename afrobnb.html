@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AfroBnB - Découvrez le luxe africain</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .title-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero-pattern {
+            background-image: url('entete_img_maldives_shangri_la_vilingili_villa_muthee_deck_and_infinity_pool_80r022h.jpg-1280x512.webp');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .property-card:hover .property-overlay {
+            opacity: 1;
+        }
+        
+        .text-afrogold {
+            color: #D4AF37;
+        }
+        
+        .bg-afrogold {
+            background-color: #D4AF37;
+        }
+        
+        .border-afrogold {
+            border-color: #D4AF37;
+        }
+        
+        .african-pattern {
+            background-image: url('https://www.transparenttextures.com/patterns/black-linen.png');
+            opacity: 0.1;
+        }
+        
+        .nav-link:hover {
+            color: #D4AF37;
+        }
+        
+        .animate-bounce-slow {
+            animation: bounce 3s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="flex items-center">
+                        <i class="fas fa-ankh text-3xl text-afrogold"></i>
+                        <span class="title-font text-2xl font-bold ml-2">AfroBnB</span>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="nav-link text-gray-700 hover:text-afrogold transition">Destinations</a>
+                    <a href="#" class="nav-link text-gray-700 hover:text-afrogold transition">Expériences</a>
+                    <a href="#" class="nav-link text-gray-700 hover:text-afrogold transition">Devenir hôte</a>
+                    <a href="#" class="nav-link text-gray-700 hover:text-afrogold transition">À propos</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="bg-afrogold text-white px-4 py-2 rounded-full font-medium hover:bg-opacity-90 transition">
+                        Réserver
+                    </button>
+                    <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+                        <i class="fas fa-user text-gray-600"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-pattern relative pt-24 pb-32 md:pt-32 md:pb-48">
+        <div class="african-pattern absolute inset-0"></div>
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="md:w-1/2">
+                <h1 class="title-font text-4xl md:text-6xl font-bold text-white mb-6">
+                    Découvrez le <span class="text-afrogold">luxe africain</span>
+                </h1>
+                <p class="text-gray-200 text-lg mb-8">
+                    Des hébergements exceptionnels qui célèbrent la richesse culturelle et la beauté naturelle de l'Afrique.
+                </p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <button class="bg-afrogold text-white px-6 py-3 rounded-full font-medium hover:bg-opacity-90 transition flex items-center justify-center">
+                        <i class="fas fa-search mr-2"></i> Explorer maintenant
+                    </button>
+                    <button class="bg-white bg-opacity-20 text-white px-6 py-3 rounded-full font-medium hover:bg-opacity-30 transition flex items-center justify-center">
+                        <i class="fas fa-play-circle mr-2"></i> Voir la vidéo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="title-font text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    Destinations <span class="text-afrogold">phares</span>
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Des lieux qui captivent par leur beauté, leur histoire et leur hospitalité légendaire.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Destination 1 -->
+                <div class="relative rounded-xl overflow-hidden shadow-lg group">
+                    <img src="https://images.unsplash.com/photo-1523805009345-7448845a9e53?ixlib=rb-4.0.3" alt="Marrakech" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white">
+                        <h3 class="title-font text-xl font-bold">Marrakech</h3>
+                        <p class="text-sm opacity-90">Maroc</p>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                        <button class="bg-afrogold text-white px-4 py-2 rounded-full">Voir les hébergements</button>
+                    </div>
+                </div>
+                
+                <!-- Destination 2 -->
+                <div class="relative rounded-xl overflow-hidden shadow-lg group">
+                    <img src="humphrey-m-e6dRLBx6Kg8-unsplash.jpg" alt="Zanzibar" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white">
+                        <h3 class="title-font text-xl font-bold">Zanzibar</h3>
+                        <p class="text-sm opacity-90">Tanzanie</p>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                        <button class="bg-afrogold text-white px-4 py-2 rounded-full">Voir les hébergements</button>
+                    </div>
+                </div>
+                
+                <!-- Destination 3 -->
+                <div class="relative rounded-xl overflow-hidden shadow-lg group">
+                    <img src="https://images.unsplash.com/photo-1544551763-77efc0b9e6a0?ixlib=rb-4.0.3" alt="Cape Town" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white">
+                        <h3 class="title-font text-xl font-bold">Le Cap</h3>
+                        <p class="text-sm opacity-90">Afrique du Sud</p>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                        <button class="bg-afrogold text-white px-4 py-2 rounded-full">Voir les hébergements</button>
+                    </div>
+                </div>
+                
+                <!-- Destination 4 -->
+                <div class="relative rounded-xl overflow-hidden shadow-lg group">
+                    <img src="https://images.unsplash.com/photo-1516026672322-8a2b4fca98f1?ixlib=rb-4.0.3" alt="Dakar" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white">
+                        <h3 class="title-font text-xl font-bold">Dakar</h3>
+                        <p class="text-sm opacity-90">Sénégal</p>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                        <button class="bg-afrogold text-white px-4 py-2 rounded-full">Voir les hébergements</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Luxury Properties -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="title-font text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    Sélection <span class="text-afrogold">luxe</span>
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Nos hébergements les plus exclusifs, alliant confort suprême et authenticité africaine.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Property 1 -->
+                <div class="property-card bg-white rounded-xl overflow-hidden shadow-lg relative">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1582719478468-2e0d4d7e0d8d?ixlib=rb-4.0.3" alt="Villa luxe" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 right-4 bg-afrogold text-white px-3 py-1 rounded-full text-sm font-medium">
+                            <i class="fas fa-crown mr-1"></i> Luxe
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="title-font text-xl font-bold text-gray-800">Villa Bahia</h3>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-afrogold"></i>
+                                <span class="ml-1 text-gray-700">4.98</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Marrakech, Maroc</p>
+                        <div class="flex items-center text-gray-600 mb-4">
+                            <i class="fas fa-users mr-2"></i>
+                            <span class="mr-4">6 voyageurs</span>
+                            <i class="fas fa-bed mr-2"></i>
+                            <span>4 chambres</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <p class="text-gray-600">
+                                À partir de <span class="text-afrogold font-bold text-lg">€450</span> /nuit
+                            </p>
+                            <button class="text-afrogold hover:text-opacity-80 transition">
+                                <i class="far fa-heart text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="property-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 transition">
+                        <button class="bg-afrogold text-white px-6 py-3 rounded-full font-medium hover:bg-opacity-90 transition">
+                            Voir les disponibilités
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Property 2 -->
+                <div class="property-card bg-white rounded-xl overflow-hidden shadow-lg relative">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3" alt="Villa luxe" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 right-4 bg-afrogold text-white px-3 py-1 rounded-full text-sm font-medium">
+                            <i class="fas fa-crown mr-1"></i> Luxe
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="title-font text-xl font-bold text-gray-800">Ocean Pearl</h3>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-afrogold"></i>
+                                <span class="ml-1 text-gray-700">4.92</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Zanzibar, Tanzanie</p>
+                        <div class="flex items-center text-gray-600 mb-4">
+                            <i class="fas fa-users mr-2"></i>
+                            <span class="mr-4">4 voyageurs</span>
+                            <i class="fas fa-bed mr-2"></i>
+                            <span>2 chambres</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <p class="text-gray-600">
+                                À partir de <span class="text-afrogold font-bold text-lg">€380</span> /nuit
+                            </p>
+                            <button class="text-afrogold hover:text-opacity-80 transition">
+                                <i class="far fa-heart text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="property-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 transition">
+                        <button class="bg-afrogold text-white px-6 py-3 rounded-full font-medium hover:bg-opacity-90 transition">
+                            Voir les disponibilités
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Property 3 -->
+                <div class="property-card bg-white rounded-xl overflow-hidden shadow-lg relative">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1561501900-3701fa6a0864?ixlib=rb-4.0.3" alt="Villa luxe" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 right-4 bg-afrogold text-white px-3 py-1 rounded-full text-sm font-medium">
+                            <i class="fas fa-crown mr-1"></i> Luxe
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="title-font text-xl font-bold text-gray-800">Safari Lodge</h3>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-afrogold"></i>
+                                <span class="ml-1 text-gray-700">5.0</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Masai Mara, Kenya</p>
+                        <div class="flex items-center text-gray-600 mb-4">
+                            <i class="fas fa-users mr-2"></i>
+                            <span class="mr-4">8 voyageurs</span>
+                            <i class="fas fa-bed mr-2"></i>
+                            <span>5 chambres</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <p class="text-gray-600">
+                                À partir de <span class="text-afrogold font-bold text-lg">€620</span> /nuit
+                            </p>
+                            <button class="text-afrogold hover:text-opacity-80 transition">
+                                <i class="far fa-heart text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="property-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 transition">
+                        <button class="bg-afrogold text-white px-6 py-3 rounded-full font-medium hover:bg-opacity-90 transition">
+                            Voir les disponibilités
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="border-2 border-afrogold text-afrogold px-8 py-3 rounded-full font-medium hover:bg-afrogold hover:text-white transition">
+                    Voir plus de propriétés
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiences Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="title-font text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    Expériences <span class="text-afrogold">uniques</span>
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Vivez l'Afrique comme jamais auparavant avec nos expériences authentiques et mémorables.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Experience 1 -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35ad0c?ixlib=rb-4.0.3" alt="Safari" class="w-full h-48 object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent h-16"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-afrogold flex items-center justify-center text-white mr-4">
+                                <i class="fas fa-paw text-xl"></i>
+                            </div>
+                            <h3 class="title-font text-xl font-bold text-gray-800">Safari Privé</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Découvrez la faune africaine avec un guide expert lors d'un safari exclusif dans les réserves naturelles.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-afrogold font-medium">À partir de €250/pers</span>
+                            <button class="text-afrogold hover:text-opacity-80 transition">
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Experience 2 -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1518544866335-95a5acf167d5?ixlib=rb-4.0.3" alt="Cuisine" class="w-full h-48 object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent h-16"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-afrogold flex items-center justify-center text-white mr-4">
+                                <i class="fas fa-utensils text-xl"></i>
+                            </div>
+                            <h3 class="title-font text-xl font-bold text-gray-800">Atelier Culinaire</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Apprenez les secrets de la cuisine marocaine avec un chef local dans une riad traditionnelle.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-afrogold font-medium">À partir de €120/pers</span>
+                            <button class="text-afrogold hover:text-opacity-80 transition">
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Experience 3 -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3" alt="Culture" class="w-full h-48 object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent h-16"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-afrogold flex items-center justify-center text-white mr-4">
+                                <i class="fas fa-music text-xl"></i>
+                            </div>
+                            <h3 class="title-font text-xl font-bold text-gray-800">Nuit Africaine</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Soirée inoubliable avec musique traditionnelle, danse et dîner sous les étoiles du désert.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-afrogold font-medium">À partir de €180/pers</span>
+                            <button class="text-afrogold hover:text-opacity-80 transition">
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-gray-50 relative">
+        <div class="african-pattern absolute inset-0"></div>
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="title-font text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    Ils ont <span class="text-afrogold">adoré</span>
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Découvrez ce que nos voyageurs disent de leurs expériences avec AfroBnB.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sophie" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="title-font font-bold text-gray-800">Sophie L.</h4>
+                            <div class="flex text-afrogold">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">
+                        "La villa à Marrakech était tout simplement incroyable. Le service était impeccable et l'architecture traditionnelle avec des touches modernes nous a totalement séduits."
+                    </p>
+                    <div class="text-sm text-gray-500">
+                        Séjourné en juin 2023
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Thomas" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="title-font font-bold text-gray-800">Thomas K.</h4>
+                            <div class="flex text-afrogold">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">
+                        "Le safari lodge au Kenya a dépassé toutes nos attentes. Voir les animaux de si près dans leur habitat naturel était une expérience inoubliable. Les guides étaient extrêmement compétents."
+                    </p>
+                    <div class="text-sm text-gray-500">
+                        Séjourné en avril 2023
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Amina" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="title-font font-bold text-gray-800">Amina D.</h4>
+                            <div class="flex text-afrogold">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">
+                        "La plage privée de notre villa à Zanzibar était paradisiaque. Le service était discret mais toujours présent quand nous en avions besoin. Nous reviendrons certainement !"
+                    </p>
+                    <div class="text-sm text-gray-500">
+                        Séjourné en février 2023
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-afrogold text-white">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="title-font text-3xl md:text-4xl font-bold mb-6">
+                Prêt à vivre l'Afrique autrement ?
+            </h2>
+            <p class="text-lg mb-8 max-w-2xl mx-auto">
+                Inscrivez-vous pour recevoir nos offres exclusives et inspirations de voyage.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center max-w-md mx-auto">
+                <input type="email" placeholder="Votre email" class="px-4 py-3 rounded-l-full sm:rounded-r-none rounded-r-full mb-2 sm:mb-0 w-full text-gray-800 focus:outline-none">
+                <button class="bg-black text-white px-6 py-3 rounded-r-full sm:rounded-l-none rounded-l-full font-medium hover:bg-opacity-90 transition">
+                    S'inscrire
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <a href="#" class="flex items-center mb-6">
+                        <i class="fas fa-ankh text-3xl text-afrogold"></i>
+                        <span class="title-font text-2xl font-bold ml-2">AfroBnB</span>
+                    </a>
+                    <p class="text-gray-400 mb-4">
+                        Découvrez le luxe africain avec nos hébergements et expériences uniques à travers le continent.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-afrogold transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-afrogold transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-afrogold transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-afrogold transition">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="title-font text-lg font-bold mb-4">Destinations</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-afrogold transition">Maroc</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-afrogold transition">Tanzanie</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-afrogold transition">Afrique du Sud</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-afrogold transition">Kenya</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-afrogold transition">Sénégal</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="title-font text-lg font-bold mb-4">À propos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-afrogold transition">Notre histoire</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-afrogold transition">Devenir hôte</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-afrogold transition">Carrières</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-afrogold transition">Presse</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-afrogold transition">Responsabilité</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="title-font text-lg font-bold mb-4">Assistance</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-afrogold transition">Centre d'aide</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-afrogold transition">Sécurité</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-afrogold transition">Conditions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-afrogold transition">Confidentialité</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-afrogold transition">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">
+                    © 2023 AfroBnB. Tous droits réservés.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-afrogold transition">Français</a>
+                    <a href="#" class="text-gray-400 hover:text-afrogold transition">English</a>
+                    <a href="#" class="text-gray-400 hover:text-afrogold transition">العربية</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <div class="fixed bottom-8 right-8 z-50">
+        <button class="w-14 h-14 rounded-full bg-afrogold text-white flex items-center justify-center shadow-xl hover:shadow-2xl transition animate-bounce-slow">
+            <i class="fas fa-comment-alt text-xl"></i>
+        </button>
+    </div>
+
+    <script>
+        // Simple script for demo purposes
+        document.addEventListener('DOMContentLoaded', function() {
+            // Favorite button toggle
+            const favoriteButtons = document.querySelectorAll('.property-card button');
+            favoriteButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const icon = this.querySelector('i');
+                    if (icon.classList.contains('far')) {
+                        icon.classList.remove('far');
+                        icon.classList.add('fas');
+                        icon.classList.add('text-red-500');
+                    } else {
+                        icon.classList.remove('fas');
+                        icon.classList.remove('text-red-500');
+                        icon.classList.add('far');
+                    }
+                });
+            });
+            
+            // Property card click
+            const propertyCards = document.querySelectorAll('.property-card');
+            propertyCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // In a real app, this would navigate to the property page
+                    console.log('Navigating to property details');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
