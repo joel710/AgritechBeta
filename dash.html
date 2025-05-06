@@ -105,6 +105,18 @@
         input:checked+.slider:before {
             transform: translateX(26px);
         }
+        .tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Style actif pour les onglets */
+.nav-tab.active-tab {
+    background-color: rgb(0 123 255 / 0.2); /* bg-primary/20 */
+}
     </style>
 </head>
 
@@ -181,7 +193,7 @@
                         <div class="flex-1 p-6">
 
                             <!-- Section Tableau de bord -->
-                            <div id="dashboard" class="dashboard-section">
+                            <div id="dashboard" class="dashboard-section tab-content active">
                                 <div class="flex justify-between items-center mb-6">
                                     <h3 class="text-xl font-semibold">Tableau de bord</h3>
                                     <div class="flex items-center">
@@ -315,7 +327,7 @@
                             </div>
 
                             <!-- Section Mes Produits -->
-                            <div id="mes-produits" class="mb-12">
+                            <div id="mes-produits" class="mb-12 tab-content">
                                 <div class="flex justify-between items-center mb-6">
                                     <h3 class="text-2xl font-bold text-gray-900">Mes produits</h3>
                                     <button
@@ -415,9 +427,14 @@
                                     <!-- Plus de produits... -->
                                 </div>
                             </div>
-        
+
+                            <!-- Section Commandes (à ajouter si manquante) -->
+                            <div id="commandes" class="mb-12 tab-content">
+                                ...
+                            </div>
+
                             <!-- Section Livraisons -->
-                            <div id="livraisons" class="mb-12">
+                            <div id="livraisons" class="mb-12 tab-content">
                                 <h3 class="text-2xl font-bold text-gray-900 mb-6">Suivi des livraisons</h3>
         
                                 <div class="grid md:grid-cols-2 gap-6">
@@ -483,7 +500,7 @@
                             </div>
         
                             <!-- Section Statistiques -->
-                            <div id="statistiques" class="mb-12">
+                            <div id="statistiques" class="mb-12 tab-content">
                                 <h3 class="text-2xl font-bold text-gray-900 mb-6">Statistiques</h3>
         
                                 <div class="grid md:grid-cols-2 gap-6">
@@ -500,6 +517,12 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Section Paramètres (à ajouter si manquante) -->
+                            <div id="parametres" class="mb-12 tab-content">
+                                ...
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -607,6 +630,38 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+                const tabs = document.querySelectorAll('.nav-tab');
+                const contents = document.querySelectorAll('.tab-content');
+
+                function activateTab(targetId) {
+                    // Désactiver toutes les sections
+                    contents.forEach(content => content.classList.remove('active'));
+
+                    // Désactiver tous les onglets
+                    tabs.forEach(tab => tab.classList.remove('active-tab', 'bg-primary/20'));
+
+                    // Activer la section cible
+                    const targetContent = document.getElementById(targetId);
+                    if (targetContent) targetContent.classList.add('active');
+
+                    // Activer l'onglet cliqué
+                    const activeTab = document.querySelector(`.nav-tab[data-target="${targetId}"]`);
+                    if (activeTab) activeTab.classList.add('active-tab', 'bg-primary/20');
+                }
+
+                // Gestionnaire de clic pour les onglets
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const targetId = this.dataset.target;
+                        activateTab(targetId);
+                    });
+                });
+
+                // Activer l'onglet par défaut au chargement
+                activateTab('dashboard');
+            });
         
         document.addEventListener('DOMContentLoaded', function () {
             // Sales Chart
@@ -761,19 +816,7 @@
                     document.getElementById('product-form').classList.toggle('hidden');
                 });
 
-                // Gestion des onglets
-                document.querySelectorAll('.nav-tab').forEach(tab => {
-                    tab.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const target = tab.dataset.target;
-
-                        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active-tab'));
-                        document.querySelectorAll('.dashboard-section').forEach(s => s.classList.remove('active-section'));
-
-                        tab.classList.add('active-tab');
-                        document.getElementById(target).classList.add('active-section');
-                    });
-                });
+                
             });
     </script>
     </body>
