@@ -405,7 +405,7 @@
                                     <!-- Produit 1 -->
                                     <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
                                         <div class="h-48 bg-gray-100 relative">
-                                            <img src="https://readdy.ai/api/search-image?query=fresh%20organic%20tomatoes%20on%20white%20background&width=400&height=300"
+                                            <img src="https://readdy.ai/api/search-image?query=fresh%20organic%20carrots%20on%20white%20background%2C%20high%20quality%20product%20photography%2C%20vibrant%20orange%20color&width=300&height=200&seq=5&orientation=landscape"
                                                 class="w-full h-full object-cover">
                                             <span
                                                 class="absolute top-2 right-2 bg-primary text-white px-2 py-1 rounded text-xs">En
@@ -414,12 +414,52 @@
                                         <div class="p-4">
                                             <h4 class="font-semibold text-lg">Tomates Bio</h4>
                                             <div class="flex justify-between items-center mt-2">
-                                                <span class="text-primary font-bold">3,50 €/kg</span>
+                                                <span class="text-primary font-bold">3,50 FCFA/kg</span>
                                                 <div class="flex items-center">
                                                     <i
                                                         class="ri-edit-box-line text-gray-500 hover:text-primary cursor-pointer mr-2"></i>
                                                     <i
                                                         class="ri-delete-bin-line text-gray-500 hover:text-red-500 cursor-pointer"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Produit 2 -->
+                                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                                        <div class="h-48 bg-gray-100 relative">
+                                            <img src="https://readdy.ai/api/search-image?query=fresh%20organic%20apples%20on%20white%20background%2C%20high%20quality%20product%20photography%2C%20red%20and%20green%20apples&width=300&height=200&seq=6&orientation=landscape"
+                                                class="w-full h-full object-cover">
+                                            <span class="absolute top-2 right-2 bg-primary text-white px-2 py-1 rounded text-xs">En
+                                                stock</span>
+                                        </div>
+                                        <div class="p-4">
+                                            <h4 class="font-semibold text-lg">Tomates Bio</h4>
+                                            <div class="flex justify-between items-center mt-2">
+                                                <span class="text-primary font-bold">3,50 FCFA/kg</span>
+                                                <div class="flex items-center">
+                                                    <i class="ri-edit-box-line text-gray-500 hover:text-primary cursor-pointer mr-2"></i>
+                                                    <i class="ri-delete-bin-line text-gray-500 hover:text-red-500 cursor-pointer"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Produit 3 -->
+                                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                                        <div class="h-48 bg-gray-100 relative">
+                                            <img src="https://readdy.ai/api/search-image?query=fresh%20organic%20lettuce%20on%20white%20background%2C%20high%20quality%20product%20photography%2C%20crisp%20green%20leaves&width=300&height=200&seq=7&orientation=landscape"
+                                                class="w-full h-full object-cover">
+                                            <span class="absolute top-2 right-2 bg-primary text-white px-2 py-1 rounded text-xs">En
+                                                stock</span>
+                                        </div>
+                                        <div class="p-4">
+                                            <h4 class="font-semibold text-lg">Tomates Bio</h4>
+                                            <div class="flex justify-between items-center mt-2">
+                                                <span class="text-primary font-bold">3,50 FCFA/kg</span>
+                                                <div class="flex items-center">
+                                                    <i class="ri-edit-box-line text-gray-500 hover:text-primary cursor-pointer mr-2"></i>
+                                                    <i class="ri-delete-bin-line text-gray-500 hover:text-red-500 cursor-pointer"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -430,7 +470,41 @@
 
                             <!-- Section Commandes (à ajouter si manquante) -->
                             <div id="commandes" class="mb-12 tab-content">
-                                ...
+                                <div class="bg-white rounded-lg shadow p-6 mb-8">
+                                    <div class="flex justify-between items-center mb-4">
+                                        <h3 class="text-lg font-semibold">🛒 Historique des commandes</h3>
+                                        <div class="flex gap-2">
+                                            <input type="date" class="border rounded px-2 py-1 text-sm">
+                                            <select class="border rounded px-2 py-1 text-sm">
+                                                <option>Tous les statuts</option>
+                                                <option>Livré</option>
+                                                <option>En cours</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                
+                                    <table class="w-full">
+                                        <thead>
+                                            <tr class="text-left text-sm text-gray-500 border-b">
+                                                <th class="pb-3">Date</th>
+                                                <th class="pb-3">Produits</th>
+                                                <th class="pb-3">Montant</th>
+                                                <th class="pb-3">Statut</th>
+                                                <th class="pb-3"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="border-b">
+                                                <td class="py-3">15/06/2024</td>
+                                                <td class="py-3">Tomates (5kg), Carottes (3kg)</td>
+                                                <td class="py-3">45,60 FCFA</td>
+                                                <td class="py-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">Livré</span></td>
+                                                <td class="py-3"><button class="text-primary hover:text-primary-dark">Détails</button></td>
+                                            </tr>
+                                            <!-- Plus de lignes... -->
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
 
                             <!-- Section Livraisons -->
@@ -492,6 +566,25 @@
                                                         <i class="ri-truck-line text-blue-600 text-xs"></i>
                                                     </div>
                                                     <span>Prise en charge transporteur - 24/06 14:20</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="bg-white rounded-lg shadow p-6 mb-8">
+                                            <h3 class="text-lg font-semibold mb-4">🚚 Suivi des livraisons</h3>
+                                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded">
+                                                <div class="flex items-center">
+                                                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
+                                                        <i class="ri-truck-line text-primary"></i>
+                                                    </div>
+                                                    <div>
+                                                        <div class="font-medium">Livraison #1254</div>
+                                                        <div class="text-sm text-gray-500">En route - Livraison prévue à 15h30</div>
+                                                    </div>
+                                                </div>
+                                                <div class="text-sm">
+                                                    <div class="text-gray-500">Livreur: Jean Martin</div>
+                                                    <div class="text-primary">+33 6 12 34 56 78</div>
                                                 </div>
                                             </div>
                                         </div>
